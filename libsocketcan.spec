@@ -66,5 +66,5 @@ rm -f "%buildroot/%_libdir"/*.la "%buildroot/%_docdir/%name/INSTALL"
 %_docdir/%name/
 
 %changelog
-* Mon Oct 30 2023 Vasiliy Glazov <v.glazov@1440.space> - 0.0.12-1
+* Mon Oct 30 2023 Vasiliy Glazov <vascom2@gmail.com> - 0.0.12-1
 - Initial packaging for Fedora
