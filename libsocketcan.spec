@@ -2,14 +2,14 @@
 
 Name:           libsocketcan
 Version:        0.0.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Library for SocketCAN
 
 License:        LGPL-2.1-or-later
 URL:            https://public.pengutronix.de/software/libsocketcan/
 Source0:        %{url}/%name-%version.tar.bz2
-Patch3:         0003-build-avoid-overriding-user-s-CFLAGS.patch
 
+BuildRequires:  gcc
 BuildRequires:  autoconf >= 2.69
 BuildRequires:  automake
 BuildRequires:  libtool >= 2
@@ -39,7 +39,7 @@ from userspace.
 This package contains the libsocketcan development files.
 
 %prep
-%autosetup -p1
+%autosetup
 
 %build
 ./autogen.sh
@@ -50,8 +50,6 @@ This package contains the libsocketcan development files.
 %make_install
 rm -f "%buildroot/%_libdir"/*.la "%buildroot/%_docdir/%name/INSTALL"
 
-%post   -n %lname -p /sbin/ldconfig
-%postun -n %lname -p /sbin/ldconfig
 
 %files -n %lname
 %doc README
@@ -66,5 +64,9 @@ rm -f "%buildroot/%_libdir"/*.la "%buildroot/%_docdir/%name/INSTALL"
 %_docdir/%name/
 
 %changelog
+* Thu Nov 02 2023 Vasiliy Glazov <vascom2@gmail.com> - 0.0.12-2
+- Added BR gcc
+- Removed patch
+
 * Mon Oct 30 2023 Vasiliy Glazov <vascom2@gmail.com> - 0.0.12-1
 - Initial packaging for Fedora
