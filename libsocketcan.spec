@@ -1,8 +1,6 @@
-%global lname   libsocketcan2
-
 Name:           libsocketcan
 Version:        0.0.12
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Library for SocketCAN
 
 License:        LGPL-2.1-or-later
@@ -19,18 +17,11 @@ BuildRequires:  pkgconfig
 This library allows you to control some basic functions in socketcan
 from userspace.
 
-%package -n %lname
-Summary:        Library for SocketCAN
-Group:          System/Libraries
-
-%description -n %lname
-This library allows you to control some basic functions in socketcan
-from userspace.
 
 %package devel
 Summary:        Development files for the SocketCAN library
 Group:          Development/Libraries/C and C++
-Requires:       %{lname}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 This library allows you to control some basic functions in socketcan
@@ -48,10 +39,10 @@ This package contains the libsocketcan development files.
 
 %install
 %make_install
-rm -f "%buildroot/%_libdir"/*.la "%buildroot/%_docdir/%name/INSTALL"
+rm -rf "%buildroot/%_libdir"/*.la "%buildroot/%_docdir/%name"
 
 
-%files -n %lname
+%files
 %doc README
 %_libdir/libsocketcan.so.2*
 %license LICENSE
@@ -61,9 +52,11 @@ rm -f "%buildroot/%_libdir"/*.la "%buildroot/%_docdir/%name/INSTALL"
 %_includedir/libsocketcan.h
 %_libdir/libsocketcan.so
 %_libdir/pkgconfig/libsocketcan.pc
-%_docdir/%name/
 
 %changelog
+* Sun Nov 05 2023 Vasiliy Glazov <vascom2@gmail.com> - 0.0.12-3
+- Update spec
+
 * Thu Nov 02 2023 Vasiliy Glazov <vascom2@gmail.com> - 0.0.12-2
 - Added BR gcc
 - Removed patch
